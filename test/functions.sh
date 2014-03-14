@@ -16,7 +16,7 @@ function run_in_target() {
 function show_ipaddr() {
   local node=${1}
   shift; eval local "${@}"
-  run_in_target ${node} "ip addr show ${ifname} | grep -w inet"
+  run_in_target ${node} "/sbin/ip addr show ${ifname} | grep -w inet"
 }
 
 function show_physical_ipaddr() {
