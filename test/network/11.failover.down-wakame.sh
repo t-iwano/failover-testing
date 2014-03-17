@@ -35,7 +35,7 @@ function test_failover_stop_process() {
   down_interface ${master} ifname=${wifname}
   assertEquals 0 $?
 
-  wait_sec 60
+  wait_sec 120
   echo "failover finished"
 }
 
