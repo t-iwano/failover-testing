@@ -15,19 +15,19 @@
 function oneTimeSetUp() {
   status_keepalived ${master} | grep -w running || {
     start_keepalived ${master} 
-    wait_sec 30
+    wait_sec 60
   }
 
   status_keepalived ${backup} | grep -w running || {
     start_keepalived ${backup} 
-    wait_sec 30
+    wait_sec 60
   }
 }
 
 function oneTimeTearDown() {
   status_keepalived ${master} | grep -w "stopped\|locked" && {
     start_keepalived ${master}
-    wait_sec 60
+    wait_sec 120
   }
 }
 
