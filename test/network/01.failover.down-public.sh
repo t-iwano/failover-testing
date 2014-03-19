@@ -31,7 +31,7 @@ function test_before_check() {
   before_check_backup_interface
 }
 
-function test_failover_stop_process() {
+function test_failover_stop_interface() {
   down_interface ${master} ifname=${pifname}
   assertEquals 0 $?
 
