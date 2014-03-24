@@ -126,9 +126,9 @@ function before_check_backup_repl() {
 }
 
 function after_check_master_repl() {
-  enabled=$(check_rpl_variables ${backup} name="master" variable="enabled")
+  enabled=$(check_rpl_variables ${backup} name="master" value="enabled")
   assertEquals "ON"  "${enabled}"
-  enabled=$(check_rpl_variables ${backup} name="slave"  variable="enabled")
+  enabled=$(check_rpl_variables ${backup} name="slave"  value="enabled")
   assertEquals "OFF" "${enabled}"
   status=$(check_rpl_status ${backup} name="master")
   assertEquals "ON"  "${status}"
