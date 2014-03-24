@@ -33,6 +33,9 @@ function test_before_check() {
   before_check_backup_process
   before_check_master_interface
   before_check_backup_interface
+  before_check_master_repl
+  before_check_backup_repl
+  check_executed_gtid_set
 }
 
 function test_failover_kill_process() {
@@ -48,6 +51,7 @@ function test_after_check() {
   after_check_master_process
   after_check_backup_interface
   after_check_master_interface
+  after_check_master_repl
 }
 
 ## shunit2
