@@ -103,6 +103,45 @@ function after_check_backup_interface() {
   assertEquals 1 $?
 }
 
+function before_check_master_repl() {
+  enabled=$(check_rpl_variables ${master} name="master" value="enabled")
+  assertEquals "ON"  "${enabled}"
+  enabled=$(check_rpl_variables ${master} name="slave"  value="enabled")
+  assertEquals "OFF" "${enabled}"
+  status=$(check_rpl_status ${master} name="master")
+  assertEquals "ON" "${status}"
+  status=$(check_rpl_status ${master} name="slave" )
+  assertEquals "OFF" "${status}"
+}
+
+function before_check_backup_repl() {
+  enabled=$(check_rpl_variables ${backup} name="master" value="enabled")
+  assertEquals "OFF" "${enabled}"
+  enabled=$(check_rpl_variables ${backup} name="slave"  value="enabled")
+  assertEquals "ON"  "${enabled}"
+  status=$(check_rpl_status ${backup} name="master")
+  assertEquals "OFF" "${status}"
+  status=$(check_rpl_status ${backup} name="slave" )
+  assertEquals "ON"  "${status}"
+}
+
+function after_check_master_repl() {
+  enabled=$(check_rpl_variables ${backup} name="master" variable="enabled")
+  assertEquals "ON"  "${enabled}"
+  enabled=$(check_rpl_variables ${backup} name="slave"  variable="enabled")
+  assertEquals "OFF" "${enabled}"
+  status=$(check_rpl_status ${backup} name="master")
+  assertEquals "ON"  "${status}"
+  status=$(check_rpl_status ${backup} name="slave" )
+  assertEquals "OFF" "${status}"
+}
+
+function check_executed_gtid_set() {
+  mgtid=$(check_master_gtid ${master})
+  sgtid=$(check_slave_gtid  ${backup})
+  assertEquals "${mgtid}" "${sgtid}"
+}
+
 function wait_sec() {
   local sec=${1}
   echo "wait ${sec} sec"
