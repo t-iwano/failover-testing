@@ -38,7 +38,7 @@ function test_failover_stop_interface() {
   down_interface ${master} ifname=${pifname}
   assertEquals 0 $?
 
-  wait_sec 180
+  wait_sec 120
   echo "failover finished"
 }
 
