@@ -123,10 +123,6 @@ function after_check_master_repl() {
   assertEquals "ON"  "${enabled}"
   enabled=$(check_rpl_variables ${backup} name="slave"  value="enabled")
   assertEquals "OFF" "${enabled}"
-  status=$(check_rpl_status ${backup} name="master")
-  assertEquals "ON"  "${status}"
-  status=$(check_rpl_status ${backup} name="slave" )
-  assertEquals "OFF" "${status}"
 }
 
 function check_executed_gtid_set() {
