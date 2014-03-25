@@ -27,7 +27,7 @@ function oneTimeSetUp() {
 function oneTimeTearDown() {
   status_keepalived ${master} | grep -w "stopped\|locked" && {
     start_keepalived ${master}
-    wait_sec 120
+    wait_sec 60
   }
 }
 

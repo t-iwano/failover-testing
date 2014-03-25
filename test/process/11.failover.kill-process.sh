@@ -43,7 +43,7 @@ function test_failover_kill_process() {
   kill_keepalived ${master}
   assertEquals 0 $?
 
-  wait_sec 120
+  wait_sec 60
   echo "failover finished"
 }
 
