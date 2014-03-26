@@ -36,9 +36,7 @@ function test_failover_stop_process() {
 }
 
 function test_after_check() {
-  after_check_backup_process
   after_check_master_process
-  after_check_backup_interface
   after_check_master_interface
   after_check_master_repl
 }
