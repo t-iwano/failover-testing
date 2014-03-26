@@ -50,7 +50,7 @@ function test_failover_kill_process() {
   kill_keepalived ${master}
   assertEquals 0 $?
 
-  wait_sec 60
+  wait_sec ${PROCESS_STOP_WAIT}
   echo "failback finished"
 }
 
