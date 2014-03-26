@@ -20,7 +20,7 @@ wifname=${WAKAME_INTERFACE}
 function oneTimeTearDown() {
   show_physical_ipaddr ${master} ${pifname} || {
     up_interface ${master} ifname=${pifname}
-    wait_sec 60
+    wait_sec ${NETWORK_SETUP_WAIT}
   }
 }
 
@@ -38,7 +38,7 @@ function test_failover_stop_interface() {
   down_interface ${master} ifname=${pifname}
   assertEquals 0 $?
 
-  wait_sec 120
+  wait_sec ${NETWORK_STOP_WAIT}
   echo "failover finished"
 }
 
