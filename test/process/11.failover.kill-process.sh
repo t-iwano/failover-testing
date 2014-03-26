@@ -19,12 +19,20 @@ wifname=${WAKAME_INTERFACE}
 ## function
 
 function after_check_backup_process() {
+  echo "after_check_backup process"
+  echo "check mysql-server status: stopped"
   status=$(status_mysqld     ${master})
   assertEquals "stopped"    "${status}"
+
+  echo "check zabbix-server status: stopped"
   status=$(status_zabbix     ${master})
   assertEquals "stopped"    "${status}"
+
+  echo "check httpd status: stopped"
   status=$(status_httpd      ${master})
   assertEquals "stopped"    "${status}"
+
+  echo "check keepalived status: locked"
   status=$(status_keepalived ${master})
   assertEquals "locked"    "${status}"
 }
