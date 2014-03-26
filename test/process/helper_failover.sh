@@ -25,6 +25,18 @@ function oneTimeSetUp() {
 }
 
 function oneTimeTearDown() {
+  status_httpd ${master} | grep -w running && {
+    stop_httpd ${master}
+  }
+
+  status_zabbix ${master} | grep -w running && {
+    stop_zabbix ${master}
+  }
+
+  status_mysqld ${master} | grep -w running && {
+    kill_mysqld ${master}
+  }
+
   status_keepalived ${master} | grep -w "stopped\|locked" && {
     start_keepalived ${master}
     wait_sec ${PROCESS_SETUP_WAIT}

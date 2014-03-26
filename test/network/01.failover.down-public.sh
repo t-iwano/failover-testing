@@ -18,6 +18,18 @@ wifname=${WAKAME_INTERFACE}
 ## function
 
 function oneTimeTearDown() {
+  status_httpd ${master} | grep -w running && {
+    stop_httpd ${master}
+  }
+
+  status_zabbix ${master} | grep -w running && {
+    stop_zabbix ${master}
+  }
+
+  status_mysqld ${master} | grep -w running && {
+    kill_mysqld ${master}
+  }
+
   show_physical_ipaddr ${master} ${pifname} || {
     up_interface ${master} ifname=${pifname}
     wait_sec ${NETWORK_SETUP_WAIT}

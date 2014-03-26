@@ -77,11 +77,21 @@ function status_httpd() {
   run_in_target ${node} "sudo service httpd status" | awk '{print $NF}'
 }
 
+function stop_httpd() {
+  local node=${1}
+  run_in_target ${node} "sudo service httpd stop"
+}
+
 ## zabbix-server
 
 function status_zabbix() {
   local node=${1}
   run_in_target ${node} "sudo service zabbix-server status" | awk '{print $NF}'
+}
+
+function stop_zabbix() {
+  local node=${1}
+  run_in_target ${node} "sudo service zabbix-server stop"
 }
 
 ## mysqld
@@ -91,4 +101,12 @@ function status_mysqld() {
   run_in_target ${node} "sudo service mysqld status"  | awk '{print $NF}'
 }
 
+function stop_mysqld() {
+  local node=${1}
+  run_in_target ${node} "sudo service mysqld stop"
+}
 
+function kill_mysqld() {
+  local node=${1}
+  run_in_target ${node} "sudo pkill -9 mysqld"
+}
