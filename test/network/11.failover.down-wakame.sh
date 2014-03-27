@@ -43,7 +43,6 @@ function test_before_check() {
   before_check_backup_interface
   before_check_master_repl
   before_check_backup_repl
-  check_executed_gtid_set
 }
 
 function test_failover_stop_interface() {
