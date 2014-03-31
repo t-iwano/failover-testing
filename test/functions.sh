@@ -67,7 +67,7 @@ function status_keepalived() {
 
 function kill_keepalived() {
   local node=${1}
-  run_in_target ${node} "sudo pkill -f keepalived"
+  run_in_target ${node} "sudo kill \`pgrep keepalived -o\`"
 }
 
 ## httpd
